@@ -2,8 +2,10 @@ import React from "react";
 
 export default function Player(props) {
   return (
-    <li className="Player">
-      <p>{props.name}</p>
+      <ul>
+<li className="Player">
+      <p style={{clear:"left" }}> Player : {props.name}  /  SCORE : {props.score} </p>
     </li>
+      </ul>
   );
 }
