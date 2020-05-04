@@ -5,6 +5,7 @@ export default class Title extends Component {
         return (
             <div>
                 <h1 style={{float:"left" }} >The classment</h1>
+                
             </div>
         )
     }
