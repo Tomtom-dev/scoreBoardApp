@@ -2,6 +2,7 @@ import React, {useState} from "react" ;
 
 import Player from '../components/Players'
 import AddPlayerForm from '../components/AddPlayerForm'
+import '../components/Scoreboard.scss'
 
 export default function Scoreboard() {
   
@@ -46,9 +47,24 @@ export default function Scoreboard() {
      set_players(updatedPlayers)
     }  
 
+    function decrementScore (id, changeBy) {
+     
+      const updatelow = players.map((player) => {
+         if(player.id === id){
+           return{
+             id : player.id,
+             name: player.name,
+             score: player.score- changeBy,
+           }
+         } else{
+           return player;
+         }
+      });
+      set_players(updatelow)
+     } 
+
     return (
         <div>
-          
           <AddPlayerForm addPlayer={name => {
           console.log("Let's add a new player with the name:", name);
         }}/>
@@ -67,6 +83,7 @@ export default function Scoreboard() {
                 name={player.name}
                 score={player.score}
                 incrementScore= {incrementScore}
+                decrementScore= {decrementScore}
                 
               />
             );

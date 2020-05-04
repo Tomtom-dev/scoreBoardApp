@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Scoreboard from './components/Scoreboard'
 import Players from './components/Players'
 import Title from './components/Title'
