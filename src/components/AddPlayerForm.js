@@ -1,15 +1,15 @@
 import React, { useState } from "react";    
 
-
-
 export default function AddPlayerForm(props) {
-
   const [newName, setNewName] = useState("");
-  console.log(newName);
+  //   console.log("STATE:", newName);
 
   function handleSubmit(event){
-    event.preventDefaut();
-    console.log(props.addPlayer);
+    // do not refresh the page on submit
+    event.preventDefault();
+    
+    props.addPlayer(newName)
+    // console.log(props.addPlayer);
 
     // clear the input field when we are done
     setNewName("");
@@ -17,16 +17,13 @@ export default function AddPlayerForm(props) {
 
   return (
     <form onSubmit= {handleSubmit}>
-        <p>
-          New player:{" "}
+        <label>Name</label>
           <input
           // controlled component value is managed by the state
-          value ={newName} 
+          value={newName} 
           onChange={(event) => setNewName( event.target.value)} 
           />
           <input type="submit"/>
-        </p>
     </form>
-
   );
 }

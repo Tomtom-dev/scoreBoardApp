@@ -1,5 +1,4 @@
 import React, {useState} from "react" ;
-
 import Player from '../components/Players'
 import AddPlayerForm from '../components/AddPlayerForm'
 import '../components/Scoreboard.scss'
@@ -13,9 +12,9 @@ export default function Scoreboard() {
         { id: 4, name: "Lisabelle", score: 42 },
         ]);
 
-    const playersCopy3 = [...players]
-    const initialScore = playersCopy3.map(player => player.score);
-    const [numberScore, setnumberScore] = useState(initialScore);
+    
+    // const initialScore = playersCopy3.map(player => player.score);
+    // const [numberScore, setnumberScore] = useState(initialScore);
 
     const playersCopy = [...players]
     const compare_score =  playersCopy.sort(compare_numbers);
@@ -84,15 +83,22 @@ export default function Scoreboard() {
          }
 
     function addPlayer(name){
-      console.log('NEW NAME: ', name);
-      
+      // console.log('NEW NAME: ', name);
+      const newPlayer = {
+        id: players.length +1,
+        name: name,
+        score :0
+      }
+      const updateNewPlayer =[...players, newPlayer]
+      // console.log(updateNewPlayer);
+      set_players(updateNewPlayer)
     }
 
     return (
         <div>
           <AddPlayerForm addPlayer={addPlayer}/>
       <p>
-        Sort by:{" "}
+        <label>Sort by:{" "}</label>
         <select onChange={change_sorting}>
           <option value="score"> score</option>
           <option value="name"> name</option>
