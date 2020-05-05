@@ -22,7 +22,7 @@ export default function Scoreboard() {
     function compare_numbers(player_a, player_b) {
       return player_b.score - player_a.score;
   }
-  const [sort_by, set_sort_by] = useState("score"); 
+    const [sort_by, set_sort_by] = useState("score"); 
     const playersCopy2 = [...players]
     const compare_name= playersCopy2.sort((a,b) => a.name.localeCompare(b.name, 'fr', {ignorePunctuation: true}) )
     
@@ -33,7 +33,7 @@ export default function Scoreboard() {
 
     function incrementScore (id, changeBy) {
      
-     const updatedPlayers = players.map((player) => {
+    const updatedPlayers = players.map((player) => {
         if(player.id === id){
           return{
             id : player.id,
@@ -63,34 +63,44 @@ export default function Scoreboard() {
       set_players(updatelow)
      } 
 
-     function resetScore (id){
-
+    function resetScore (){
       const reset = players.map((player) => {
-        if(player.id === id){
-          return{
-            id : player.id,
-            name: player.name,
-            score: player.score- player.score,
-          }
-        } else{
-          return player;
+       if(player.score !== 0){
+          return {...player, score : 0};
+
+        }else{
+          return player
         }
-     });
-     set_players(reset)
-     }
+      });
+        set_players(reset)
+       }
+       
+       function randomize (){
+        const reset = players.map((player) => {
+        const random =parseInt(Math.random()*101);
+            return {...player, score : random};
+        });
+          set_players(reset)
+         }
+
+    function addPlayer(name){
+      console.log('NEW NAME: ', name);
+      
+    }
 
     return (
         <div>
-          <AddPlayerForm addPlayer={name => {
-          console.log("Let's add a new player with the name:", name);
-        }}/>
+          <AddPlayerForm addPlayer={addPlayer}/>
       <p>
         Sort by:{" "}
         <select onChange={change_sorting}>
           <option value="score"> score</option>
           <option value="name"> name</option>
         </select>
+        <button onClick={resetScore}>reset</button>
+        <button onClick={randomize}>randomize</button>
       </p>
+      
           {playersSorted.map((player) => {
             return (
               <Player
@@ -100,8 +110,6 @@ export default function Scoreboard() {
                 score={player.score}
                 incrementScore= {incrementScore}
                 decrementScore= {decrementScore}
-                resetScore ={resetScore}
-                
               />
             );
           })}
