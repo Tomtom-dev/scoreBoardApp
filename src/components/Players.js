@@ -25,7 +25,7 @@ export default function Player(props) {
       <p key={props.id} style={{clear:"left" }}> Player : {props.name}  /  SCORE : {props.score} </p>
   <button onClick={onClickIncrement} style={{marginBottom : 25}}> score ++ </button>
   <button onClick={onClickDecrement}>score --</button>
-  <button >reset</button>
+  <button onClick={onClickReset}>reset</button>
     </li>
     
       </ul>

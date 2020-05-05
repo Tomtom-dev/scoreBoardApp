@@ -63,6 +63,22 @@ export default function Scoreboard() {
       set_players(updatelow)
      } 
 
+     function resetScore (id){
+
+      const reset = players.map((player) => {
+        if(player.id === id){
+          return{
+            id : player.id,
+            name: player.name,
+            score: player.score- player.score,
+          }
+        } else{
+          return player;
+        }
+     });
+     set_players(reset)
+     }
+
     return (
         <div>
           <AddPlayerForm addPlayer={name => {
@@ -84,6 +100,7 @@ export default function Scoreboard() {
                 score={player.score}
                 incrementScore= {incrementScore}
                 decrementScore= {decrementScore}
+                resetScore ={resetScore}
                 
               />
             );
